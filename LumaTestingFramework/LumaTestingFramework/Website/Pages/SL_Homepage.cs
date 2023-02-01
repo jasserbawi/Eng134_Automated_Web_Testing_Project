@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SL_TestAutomationFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LumaTestingFramework.Website.Pages;
 
-public class SL_Homepage : SL_StandardPage
+public class SL_Homepage : SL_StandardPage, INavigate
 {
     IWebElement ExampleObject;
     public SL_Homepage(IWebDriver driver) : base(driver)
@@ -18,5 +19,10 @@ public class SL_Homepage : SL_StandardPage
     public void ExampleAction()
     {
         ExampleObject.Click();
+    }
+
+    public void Navigate()
+    {
+        _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl);
     }
 }
