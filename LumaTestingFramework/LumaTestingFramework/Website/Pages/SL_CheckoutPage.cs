@@ -39,7 +39,13 @@ public class SL_CheckoutPage
     public SL_CheckoutPage(IWebDriver driver)
     {
         _driver = driver;
+    }
+    public void Navigate()
+    {
+        _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.Checkout);
+
         GetPageElements();
+
         _state = _driver.FindElement(By.Id("shippingAddress.region_id")).FindElement(By.ClassName("select"));
         _stateDropdown = new SelectElement(_state);
         _country = _driver.FindElement(By.Id("shippingAddress.country_id")).FindElement(By.ClassName("select"));
@@ -48,10 +54,6 @@ public class SL_CheckoutPage
 
         GetShippingMethods();
         GetRequiredFields();
-    }
-    public void Navigate()
-    {
-        _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.Checkout);
     }
     public void EnterEmail(string email) => _email.SendKeys(email);
     public void EnterFirstName(string firstName) => _firstName.SendKeys(firstName);

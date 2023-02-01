@@ -57,6 +57,6 @@ public class CheckoutPageStepDefinitions
     [Then(@"I will be taken to the payment method page")]
     public void ThenIWillBeTakenToThePaymentMethodPage()
     {
-        Assert.That(_website.GetCurrentPageUrl(), Is.EqualTo("https://magento.softwaretestingboard.com/checkout/#payment");
+        Assert.That(_website.GetCurrentPageUrl(), Is.EqualTo("https://magento.softwaretestingboard.com/checkout/#payment"));
     }
 }
