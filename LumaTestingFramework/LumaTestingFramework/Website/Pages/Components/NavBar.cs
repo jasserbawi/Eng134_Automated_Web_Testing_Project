@@ -21,32 +21,32 @@ public class NavBar
         Sale = navElement.FindElement(By.Id("ui-id-8"));
     }
 
-    public void NavigateToWhatsNew()
+    public void ClickOnWhatsNew()
     {
         WhatsNew.Click();
     }
 
-    public void NavigateToWomen()
+    public void ClickOnToWomen()
     {
         Women.Click();
     }
 
-    public void NavigateToMen()
+    public void ClickOnToMen()
     {
         Men.Click();
     }
 
-    public void NavigateToGear()
+    public void ClickOnToGear()
     {
         Gear.Click();
     }
 
-    public void NavigateToTraining()
+    public void ClickOnToTraining()
     {
         Training.Click();
     }
 
-    public void NavigateToSale()
+    public void ClickOnToSale()
     {
         Sale.Click();
     }

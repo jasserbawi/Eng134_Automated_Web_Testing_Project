@@ -36,7 +36,7 @@ public class DriverConfigurationStepDefinitions
         Assert.That(_driver.Manage().Timeouts().ImplicitWait, Is.EqualTo(TimeSpan.FromSeconds(implicitWaitInSeconds)));
     }
 
-    [After]
+    [AfterScenario]
     public void TearDown()
     {
         _driver.Quit();

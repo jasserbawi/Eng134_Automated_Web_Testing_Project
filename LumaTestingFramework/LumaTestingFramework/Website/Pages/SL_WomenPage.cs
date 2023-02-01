@@ -7,6 +7,7 @@ namespace LumaTestingFramework.Website.Pages;
 public class SL_WomenPage : SL_StandardPage, INavigate
 {
     public NavBar NavBar { get; private set; }
+    public PageHeader PageHeader { get; private set; }
 
     protected SL_WomenPage(IWebDriver driver) : base(driver)
     {
