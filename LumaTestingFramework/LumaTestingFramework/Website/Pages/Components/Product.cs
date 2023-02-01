@@ -1,34 +1,55 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 
-namespace LumaTestingFramework.Website.Pages.Components;
-
-public class Product
+namespace LumaTestingFramework.Website.Pages.Components
 {
-    IWebElement AddToCartButton { get; set; }
-    IWebElement ItemPageLink { get; set; }
-    IWebElement Price { get; set; }
-    IWebElement ColorOption { get; set; }
-    IWebElement SizeOption { get; set; }
-    IWebElement AddToWishListButton { get; set; }
-    IWebElement AddToCompareButton { get; set; }
-
-    public void AddingToCart() => AddToCartButton.Click();
-    public void NavigateToItemPage() => ItemPageLink.Click();
-    public void AddingToWishList() => AddToWishListButton.Click();
-    public void AddingToCompare() => AddToCompareButton.Click();
-    public void SelectingColour() => ColorOption.Click();
-    public void SelectingSize() => SizeOption.Click();
-    public void CheckingPrice() => Price.Click();
-
-    public Product(IWebDriver driver, string addToCartButtonXPath, string itemPageLinkXPath, string priceXPath, 
-    string colorOptionXPath, string sizeOptionXPath, string addToWishListButtonXPath, string addToCompareButtonXPath)
+    public class Product
     {
-        AddToCartButton = driver.FindElement(By.XPath(addToCartButtonXPath));
-        ItemPageLink = driver.FindElement(By.XPath(itemPageLinkXPath));
-        Price = driver.FindElement(By.XPath(priceXPath));
-        ColorOption = driver.FindElement(By.XPath(colorOptionXPath));
-        SizeOption = driver.FindElement(By.XPath(sizeOptionXPath));
-        AddToWishListButton = driver.FindElement(By.XPath(addToWishListButtonXPath));
-        AddToCompareButton = driver.FindElement(By.XPath(addToCompareButtonXPath));
+        IWebDriver _driver;
+        public IWebElement AddToCartButton { get; set; }
+        public IWebElement ItemPageLink { get; set; }
+        public IWebElement Price { get; set; }
+        public IWebElement ColorOption { get; set; }
+        public IWebElement SizeOption { get; set; }
+        public IWebElement AddToWishListButton { get; set; }
+        public IWebElement AddToCompareButton { get; set; }
+
+        public Product(IWebDriver driver, IWebElement product)
+        {
+            _driver = driver;
+            AddToCartButton = product.FindElement(By.ClassName("action tocart primary"));
+            ItemPageLink = product.FindElement(By.ClassName("product-item-link"));
+            Price = product.FindElement(By.ClassName("price"));
+            ColorOption = product.FindElement(By.ClassName("swatch-option color"));
+            SizeOption = product.FindElement(By.ClassName("swatch-option text"));
+            AddToWishListButton = product.FindElement(By.ClassName("action towishlist"));
+            AddToCompareButton = product.FindElement(By.ClassName("action tocompare"));
+        }
+
+        public void AddingToCart() => AddToCartButton.Click();
+        public void NavigateToItemPage() => ItemPageLink.Click();
+        public void AddingToWishList() => AddToWishListButton.Click();
+        public void AddingToCompare() => AddToCompareButton.Click();
+        public void SelectingColour() => ColorOption.Click();
+        public void SelectingSize() => SizeOption.Click();
+        public void CheckingPrice() => Price.Click();
+    }
+
+    public class ProductList
+    {
+        IWebDriver _driver;
+        public List<Product> Products { get; set; }
+
+        public ProductList(IWebDriver driver)
+        {
+            _driver = driver;
+            var homePageProducts = _driver.FindElements(By.ClassName("product-items widget-product-grid"));
+            var products = _driver.FindElements(By.ClassName("products list items product-items"));
+            Products = new List<Product>();
+            foreach (var product in homePageProducts.Count > 0 ? homePageProducts : products)
+            {
+                Products.Add(new Product(_driver, product));
+            }
+        }
     }
 }

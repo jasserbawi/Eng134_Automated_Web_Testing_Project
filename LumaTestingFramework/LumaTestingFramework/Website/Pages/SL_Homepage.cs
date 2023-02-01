@@ -3,14 +3,14 @@ using SL_TestAutomationFramework;
 
 namespace LumaTestingFramework.Website.Pages;
 
-public class SL_Homepage : SL_StandardPage
+public class SL_Homepage : SL_StandardPage, INavigate
 {
     public SL_Homepage(IWebDriver driver) : base(driver)
     {
         //Setup IWebElements and custom objects
     }
      
-    string _homePageUrl = AppConfigReader.BaseUrl;   
+    private string _homePageUrl = AppConfigReader.BaseUrl;   
     private IWebDriver Driver { get; }
     
     private IWebElement _yogaCollectionRedirect => Driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/a"));
@@ -39,4 +39,8 @@ public class SL_Homepage : SL_StandardPage
     public void ClickFusionBackpack() => _fusionBackpackRedirect.Click();
     public void ClickPushItMessengerBag() => _pushItMessengerBagRedirect.Click();
 
+    public void Navigate()
+    {
+        _driver.Navigate().GoToUrl(_homePageUrl);
+    }
 }
