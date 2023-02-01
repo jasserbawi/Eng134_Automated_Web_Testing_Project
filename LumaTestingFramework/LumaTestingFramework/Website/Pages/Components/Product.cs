@@ -21,7 +21,7 @@ namespace LumaTestingFramework.Website.Pages.Components
         public void AddingToCompare() => AddToCompareButton.Click();
         public void SelectingColor() => ColorOption.Click();
         public void SelectingSize() => SizeOption.Click();
-        public void CheckingPrice() => Price.Click();
+        public string CheckingPrice() => Price.Text;
 
         public Product(IWebDriver driver, IWebElement productElement)
         {
@@ -29,8 +29,8 @@ namespace LumaTestingFramework.Website.Pages.Components
             AddToCartButton = productElement.FindElement(By.ClassName("action tocart primary"));
             ItemPageLink = productElement.FindElement(By.ClassName("product-item-link"));
             Price = productElement.FindElement(By.ClassName("price"));
-            ColorOption = productElement.FindElement(By.ClassName("swatch-option color"));
-            SizeOption = productElement.FindElement(By.ClassName("swatch-option text"));
+            ColorOption = productElement.FindElement(By.ClassName(""));
+            SizeOption = productElement.FindElement(By.ClassName(""));
             AddToWishListButton = productElement.FindElement(By.ClassName("action towishlist"));
             AddToCompareButton = productElement.FindElement(By.ClassName("action tocompare"));
         }
