@@ -4,20 +4,50 @@ namespace LumaTestingFramework.Website.Pages.Components;
 
 public class NavBar
 {
-    IWebElement Womens { get; set; }
-    IWebElement Mens { get; set; }
+    public IWebElement WhatsNew { get; private set; }
+    public IWebElement Women { get; private set; }
+    public IWebElement Men { get; private set; }
+    public IWebElement Gear { get; private set; }
+    public IWebElement Training { get; private set; }
+    public IWebElement Sale { get; private set; }
 
-    public NavBar()
+    public NavBar(IWebElement navElement)
     {
-        //add code to get the element addresses of the womens and mens links
+        WhatsNew = navElement.FindElement(By.Id("ui-id-3"));
+        Women = navElement.FindElement(By.Id("ui-id-4"));
+        Men = navElement.FindElement(By.Id("ui-id-5"));
+        Gear = navElement.FindElement(By.Id("ui-id-6"));
+        Training = navElement.FindElement(By.Id("ui-id-7"));
+        Sale = navElement.FindElement(By.Id("ui-id-8"));
     }
 
-    public void NavigateToWomens()
+    public void NavigateToWhatsNew()
     {
-        Womens.Click();
+        WhatsNew.Click();
     }
-    public void NavigateToMens()
+
+    public void NavigateToWomen()
     {
-        Mens.Click();
+        Women.Click();
+    }
+
+    public void NavigateToMen()
+    {
+        Men.Click();
+    }
+
+    public void NavigateToGear()
+    {
+        Gear.Click();
+    }
+
+    public void NavigateToTraining()
+    {
+        Training.Click();
+    }
+
+    public void NavigateToSale()
+    {
+        Sale.Click();
     }
 }
