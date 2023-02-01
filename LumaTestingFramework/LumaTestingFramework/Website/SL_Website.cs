@@ -9,18 +9,26 @@ namespace LumaTestingFramework.Website;
 public class SL_Website 
 {
     #region Pages
-    public SL_Homepage Homepage { get; }
+    public SL_Homepage Homepage { get; set; }
+    public SL_CheckoutPage CheckoutPage { get; set;}
 
     #endregion
 
     IWebDriver _driver;
-    public SL_Website()
+    public SL_Website(int pageLoadInSecs = 3, int implicitWaitInSecs = 3, bool headless = true)
     {
-        _driver = DriverSetup();
+        _driver = DriverSetup(pageLoadInSecs, implicitWaitInSecs, headless);
         Homepage = new SL_Homepage(_driver);
+        CheckoutPage = new SL_CheckoutPage(_driver);
+
     }
 
-    public IWebDriver DriverSetup(int pageLoadInSecs = 3, int implicitWaitInSecs = 3, bool headless = true)
+    public string GetCurrentPageUrl()
+    {
+        return _driver.Url;
+    }
+
+    public IWebDriver DriverSetup(int pageLoadInSecs, int implicitWaitInSecs, bool headless)
     {
         DriverConfig<ChromeDriver> driverConfig = new(pageLoadInSecs, implicitWaitInSecs, headless);
         return driverConfig.Driver;
