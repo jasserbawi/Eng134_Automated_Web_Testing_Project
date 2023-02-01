@@ -12,8 +12,4 @@
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.32.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Website\Driver\" />
-  </ItemGroup>
-
 </Project>

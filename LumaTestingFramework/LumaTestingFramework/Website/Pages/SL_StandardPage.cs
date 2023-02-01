@@ -18,9 +18,5 @@ public abstract class SL_StandardPage : INavigate
         _driver = driver;
     }
 
-    public virtual void Navigate()
-    {
-        _driver.Navigate(/*read html from appConfig*/);
-    }
-
+    public abstract void Navigate();
 }
