@@ -24,4 +24,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LumaTestingFramework\LumaTestingFramework.csproj" />
+  </ItemGroup>
+
 </Project>
