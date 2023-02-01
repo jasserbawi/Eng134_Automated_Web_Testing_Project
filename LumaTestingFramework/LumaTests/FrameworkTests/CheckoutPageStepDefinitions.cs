@@ -17,14 +17,12 @@ public class CheckoutPageStepDefinitions
         _website = new(3,3,false);
     }
 
-    [Ignore("ignored until add to basket implemented")]
     [Given(@"I am on the checkout page")]
     public void GivenIAmOnTheCheckoutPage()
     {
         _website.CheckoutPage.Navigate();
     }
 
-    [Ignore("ignored until add to basket implemented")]
     [Given(@"I have entered the required details")]
     public void GivenIHaveEnteredTheRequiredDetails()
     {
@@ -39,21 +37,18 @@ public class CheckoutPageStepDefinitions
         _website.CheckoutPage.SelectCountry("United States");
     }
 
-    [Ignore("ignored until add to basket implemented")]
     [Given(@"I have selected a shipping method")]
     public void GivenIHaveSelectedAShippingMethod()
     {
         _website.CheckoutPage.SelectDefaultShipping();
     }
 
-    [Ignore("ignored until add to basket implemented")]
     [When(@"I click next")]
     public void WhenIClickNext()
     {
         _website.CheckoutPage.PressContinue();
     }
 
-    [Ignore("ignored until add to basket implemented")]
     [Then(@"I will be taken to the payment method page")]
     public void ThenIWillBeTakenToThePaymentMethodPage()
     {
