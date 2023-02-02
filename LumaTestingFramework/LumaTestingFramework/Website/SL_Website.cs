@@ -10,6 +10,7 @@ public class SL_Website
 {
     #region Pages
     public SL_Homepage Homepage { get; }
+    public SL_Basket BasketPage { get; }    
 
     #endregion
 
@@ -18,6 +19,8 @@ public class SL_Website
     {
         _driver = DriverSetup();
         Homepage = new SL_Homepage(_driver);
+        BasketPage = new SL_Basket(_driver);
+       
     }
 
     public IWebDriver DriverSetup(int pageLoadInSecs = 3, int implicitWaitInSecs = 3, bool headless = true)
