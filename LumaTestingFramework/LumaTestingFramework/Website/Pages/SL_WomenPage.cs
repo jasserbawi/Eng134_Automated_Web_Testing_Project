@@ -18,8 +18,8 @@ public class SL_WomenPage : SL_StandardPage, INavigate
     {
         _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.WomensPage);
         NavBar = new NavBar(_driver.FindElement(By.TagName("nav")));
-        SideBar = _driver.FindElement(By.ClassName("sidebar-main")).FindElements(By.ClassName("item")).ToList();
-        PromoBlock = _driver.FindElement(By.CssSelector("div[class='block-promo']")).FindElements(By.TagName("a")).ToList();
+        SideBar = _driver.FindElement(By.ClassName("sidebar-main")).FindElements(By.TagName("a")).ToList();
+        PromoBlock = _driver.FindElement(By.CssSelector("div[class='blocks-promo']")).FindElements(By.TagName("a")).ToList();
         Products = Product.ProductsList(_driver);
     }
 

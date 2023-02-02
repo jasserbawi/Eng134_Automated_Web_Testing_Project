@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 namespace LumaTests.SiteTests;
 
 [Binding]
+[Scope(Feature = "FilterTopsBottoms")]
 public class FilterTopsBottomsStepDefinitions
 {
     SL_Website _website;
@@ -19,7 +20,10 @@ public class FilterTopsBottomsStepDefinitions
     }
 
     [When(@"I click the tops filter option")]
-    public void WhenIClickTheTopsFilterOption() => _website.WomenPage.ClickTopsLink();
+    public void WhenIClickTheTopsFilterOption()
+    {
+        _website.WomenPage.ClickTopsLink();
+    }
 
     [Then(@"I should be redirected to the women's tops page")]
     public void ThenIShouldBeRedirectedToTheWomensTopsPage()
@@ -28,7 +32,10 @@ public class FilterTopsBottomsStepDefinitions
     }
 
     [When(@"I click the bottoms filter option")]
-    public void WhenIClickTheBottomsFilterOption() => _website.WomenPage.ClickBottomsLink();
+    public void WhenIClickTheBottomsFilterOption()
+    {
+        _website.WomenPage.ClickBottomsLink();
+    }
 
     [Then(@"I should be redirected to the women's bottoms page")]
     public void ThenIShouldBeRedirectedToTheWomensBottomsPage()
