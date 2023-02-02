@@ -18,7 +18,7 @@ public class HomePageStepDefinitions
     public void Setup()
     {
         _website = new SL_Website();
-        DriverConfig<ChromeDriver> _driverConfig = new(17, 17, true);
+        DriverConfig<ChromeDriver> _driverConfig = new(25, 25, true);
         _driver = _driverConfig.Driver;
     }
 
@@ -31,7 +31,6 @@ public class HomePageStepDefinitions
     [When(@"I click on the New Luma Yoga Collection")]
     public void WhenIClickOnTheNewLumaYogaCollection()
     {
-        Thread.Sleep(10000);
         _website.Homepage.ClickYogaCollections();
     }
 
@@ -107,5 +106,6 @@ public class HomePageStepDefinitions
     {
         _driver.Quit();
         _driver.Dispose();
+        _website.DisposeOfDriver();
     }
 }
