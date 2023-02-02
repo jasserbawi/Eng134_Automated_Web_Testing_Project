@@ -4,6 +4,7 @@ namespace LumaTestingFramework.Website.Pages.Components
 {
     public class Product
     {
+        private IWebElement _webElement;
         private Dictionary<string, IWebElement> colourOptions;
         private Dictionary<string, IWebElement> sizeOptions;
         IWebElement AddToCartButton { get; set; }
@@ -14,8 +15,9 @@ namespace LumaTestingFramework.Website.Pages.Components
 
         public void AddRandomItemToCart()
         {
-            PickAnyColour();
             PickAnySize();
+            PickAnyColour();
+            AddToCartButton = _webElement.FindElement(By.CssSelector(".action.tocart.primary"));
             AddingToCart();
         }
         public void PickAnyColour()
@@ -31,7 +33,7 @@ namespace LumaTestingFramework.Website.Pages.Components
             if (sizeOptions.Any())
             {
                 var listOfSizeOptions = sizeOptions.Keys.ToList();
-                SelectColor(listOfSizeOptions[0]);
+                SelectSize(listOfSizeOptions[0]);
             }
         }
         public void AddingToCart() => AddToCartButton.Click();
@@ -65,28 +67,33 @@ namespace LumaTestingFramework.Website.Pages.Components
 
         public Product(IWebElement productElement)
         {
-            AddToCartButton = productElement.FindElement(By.ClassName("action tocart primary"));
+            _webElement = productElement;
+            AddToCartButton = productElement.FindElement(By.CssSelector(".action.tocart.primary"));
             ItemPageLink = productElement.FindElement(By.ClassName("product-item-link"));
             Price = productElement.FindElement(By.ClassName("price"));
-            AddToWishListButton = productElement.FindElement(By.ClassName("action towishlist"));
-            AddToCompareButton = productElement.FindElement(By.ClassName("action tocompare"));
-            
-            var colourElements = productElement.FindElement(By.ClassName("swatch-attribute color")).FindElements(By.ClassName("swatch-attribute-options clearfix"));
+            AddToWishListButton = productElement.FindElement(By.CssSelector(".action.towishlist"));
+            AddToCompareButton = productElement.FindElement(By.CssSelector(".action.tocompare"));
+
+            colourOptions = new();
+            var colourSwatch = productElement.FindElement(By.CssSelector(".swatch-attribute.color")).FindElement(By.CssSelector(".swatch-attribute-options.clearfix"));
+            var colourElements = colourSwatch.FindElements(By.CssSelector(".swatch-option.color"));
             foreach (var colourElement in colourElements)
             {
-                var colour = colourElement.GetAttribute("value");
+                var colour = colourElement.GetAttribute("aria-label");
                 colourOptions[colour] = colourElement;
             }
 
-            var sizeElements = productElement.FindElement(By.ClassName("swatch-attribute size")).FindElements(By.ClassName("swatch-attribute-options clearfix"));
+            sizeOptions = new();
+            var sizeSwatch = productElement.FindElement(By.CssSelector(".swatch-attribute.size")).FindElement(By.CssSelector(".swatch-attribute-options.clearfix"));
+            var sizeElements = sizeSwatch.FindElements(By.CssSelector(".swatch-option.text"));
             foreach (var sizeElement in sizeElements)
             {
-                var size = sizeElement.GetAttribute("value");
+                var size = sizeElement.GetAttribute("aria-label");
                 sizeOptions[size] = sizeElement;
             }
         }
 
         public static List<Product> ProductsList(IWebDriver driver) =>
-            driver.FindElements(By.ClassName("products list items product-items")).Select(e => new Product(e)).ToList();
+            driver.FindElements(By.CssSelector(".products.list.items.product-items")).Select(e => new Product(e)).ToList();
     }
 }
