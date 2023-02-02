@@ -4,12 +4,11 @@ namespace LumaTestingFramework.Website.Pages.Components
 {
     public class Product
     {
-        IWebDriver _driver;
+        private Dictionary<string, IWebElement> colourOptions;
+        private Dictionary<string, IWebElement> sizeOptions;
         IWebElement AddToCartButton { get; set; }
         IWebElement ItemPageLink { get; set; }
         IWebElement Price { get; set; }
-        IWebElement ColorOption { get; set; }
-        IWebElement SizeOption { get; set; }
         IWebElement AddToWishListButton { get; set; }
         IWebElement AddToCompareButton { get; set; }
 
@@ -17,23 +16,54 @@ namespace LumaTestingFramework.Website.Pages.Components
         public void NavigateToItemPage() => ItemPageLink.Click();
         public void AddingToWishList() => AddToWishListButton.Click();
         public void AddingToCompare() => AddToCompareButton.Click();
-        public void SelectingColor() => ColorOption.Click();
-        public void SelectingSize() => SizeOption.Click();
         public string CheckingPrice() => Price.Text;
-
-        public Product(IWebDriver driver, IWebElement productElement)
+        public void SelectColor(string colour)
         {
-            _driver = driver;
+            if (colourOptions.TryGetValue(colour, out IWebElement colourOption))
+            {
+                colourOption.Click();
+            }
+            else
+            {
+                throw new Exception("Colour not found: " + colour);
+            }
+        }
+
+        public void SelectSize(string size)
+        {
+            if (sizeOptions.TryGetValue(size, out IWebElement sizeOption))
+            {
+                sizeOption.Click();
+            }
+            else
+            {
+                throw new Exception("Size not found: " + size);
+            }
+        }
+
+        public Product(IWebElement productElement)
+        {
             AddToCartButton = productElement.FindElement(By.ClassName("action tocart primary"));
             ItemPageLink = productElement.FindElement(By.ClassName("product-item-link"));
             Price = productElement.FindElement(By.ClassName("price"));
-            ColorOption = productElement.FindElement(By.ClassName(""));
-            SizeOption = productElement.FindElement(By.ClassName(""));
             AddToWishListButton = productElement.FindElement(By.ClassName("action towishlist"));
             AddToCompareButton = productElement.FindElement(By.ClassName("action tocompare"));
+            
+            var colourElements = productElement.FindElements(By.ClassName("color-option"));
+            foreach (var colourElement in colourElements)
+            {
+                var colour = colourElement.GetAttribute("value");
+                colourOptions[colour] = colourElement;
+            }
+            var sizeElements = productElement.FindElements(By.ClassName("size-option"));
+            foreach (var sizeElement in sizeElements)
+            {
+                var size = sizeElement.GetAttribute("value");
+                sizeOptions[size] = sizeElement;
+            }
         }
 
         public static List<Product> ProductsList(IWebDriver driver) =>
-            driver.FindElements(By.ClassName("product-items widget-product-grid")).Select(e => new Product(driver, e)).ToList();
+            driver.FindElements(By.ClassName("product-items widget-product-grid")).Select(e => new Product(e)).ToList();
     }
 }
