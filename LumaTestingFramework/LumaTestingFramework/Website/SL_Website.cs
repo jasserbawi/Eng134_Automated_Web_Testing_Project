@@ -11,6 +11,7 @@ public class SL_Website
     #region Pages
     public SL_Homepage Homepage { get; set; }
     public SL_CheckoutPage CheckoutPage { get; set;}
+    public SL_WomenPage WomenPage { get; set;}
 
     #endregion
 
@@ -20,6 +21,7 @@ public class SL_Website
         _driver = DriverSetup(pageLoadInSecs, implicitWaitInSecs, headless);
         Homepage = new SL_Homepage(_driver);
         CheckoutPage = new SL_CheckoutPage(_driver);
+        WomenPage = new SL_WomenPage(_driver);
 
     }
 

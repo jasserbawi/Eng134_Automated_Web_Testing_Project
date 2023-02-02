@@ -14,6 +14,14 @@ Scenario: Checkout with valid details
 
 @ignore
 @HappyPath
+@AC8.5
+Scenario: Getting to the checkout page with items in basket
+	Given I have an item in the basket
+	When I navigate to checkout
+	Then I will be taken to the checkout page
+
+@ignore
+@HappyPath
 @AC8.2
 Scenario: Checkout with invalid details
 	Given I am on the checkout page

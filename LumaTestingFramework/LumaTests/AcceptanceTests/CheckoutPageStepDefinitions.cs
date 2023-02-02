@@ -3,7 +3,7 @@ using LumaTestingFramework.Website.Pages;
 using System;
 using TechTalk.SpecFlow;
 
-namespace LumaTests.FrameworkTests;
+namespace LumaTests.AcceptanceTests;
 
 [Binding]
 public class CheckoutPageStepDefinitions
@@ -14,7 +14,14 @@ public class CheckoutPageStepDefinitions
     [OneTimeSetUp]
     public void Setup()
     {
-        _website = new(3,3,false);
+        _website = new(3, 3, false);
+    }
+
+    [Given(@"I have an item in the basket")]
+    public void GivenIHaveAnItemInTheBasket()
+    {
+        _website.WomenPage.Navigate();
+        _website.WomenPage.Products[0].AddRandomItemToCart();
     }
 
     [Given(@"I am on the checkout page")]
@@ -40,7 +47,7 @@ public class CheckoutPageStepDefinitions
     [Given(@"I have not entered required details")]
     public void GivenIHaveNotEnteredAnyRequiredDetails()
     {
-    
+        //empty step
     }
 
     [Given(@"I have selected a shipping method")]
@@ -49,10 +56,22 @@ public class CheckoutPageStepDefinitions
         _website.CheckoutPage.SelectDefaultShipping();
     }
 
+    [When(@"I navigate to checkout")]
+    public void WhenINavigateToCheckout()
+    {
+        _website.CheckoutPage.Navigate();
+    }
+
     [When(@"I click next")]
     public void WhenIClickNext()
     {
         _website.CheckoutPage.PressContinue();
+    }
+
+    [Then(@"I will be taken to the checkout page")]
+    public void ThenIWillBeTakenToTheCheckoutPage()
+    {
+        throw new PendingStepException();
     }
 
     [Then(@"I will be taken to the payment method page")]
@@ -61,13 +80,10 @@ public class CheckoutPageStepDefinitions
         Assert.That(_website.GetCurrentPageUrl(), Is.EqualTo("https://magento.softwaretestingboard.com/checkout/#payment"));
     }
 
-    
-
     [Then(@"Each required field will be highlighted with an error message")]
     public void ThenEachRequiredFieldWillBeHighlightedWithAnErrorMessage()
     {
         int requiredFields = _website.CheckoutPage.GetNumberOfInvalidFields();
         Assert.That(requiredFields, Is.EqualTo(8));
     }
-
 }
