@@ -11,6 +11,7 @@ public class SL_Website
     #region Pages
     public SL_Homepage Homepage { get; }
     public SL_WomenPage WomenPage { get; }
+    public SL_CheckoutPage CheckoutPage { get; }
 
     #endregion
 
@@ -21,10 +22,12 @@ public class SL_Website
         _driver = driverConfig.Driver; ;
 
         Homepage = new SL_Homepage(_driver);
+        CheckoutPage = new SL_CheckoutPage(_driver);
         WomenPage = new SL_WomenPage(_driver);
+
     }
 
-    public string GetCurrentUrl() => _driver.Url;
+    public string GetCurrentPageUrl() => _driver.Url;
     public void DisposeOfDriver()
     {
         _driver.Quit();

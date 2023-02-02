@@ -12,15 +12,11 @@ public class SL_WomenPage : SL_StandardPage, INavigate
     public List<IWebElement> PromoBlock { get; private set; }
     public List<Product> HotSellers { get; private set; }
 
-    public SL_WomenPage(IWebDriver driver) : base(driver)
-    {
-    }
+    public SL_WomenPage(IWebDriver driver) : base(driver) { }
 
     public void Navigate()
     {
-        _driver.Navigate().GoToUrl(AppConfigReader.WomensPage);
-
-        PageHeader = new PageHeader(_driver.FindElement(By.CssSelector("header[class='page-header']")));
+        _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.WomensPage);
         NavBar = new NavBar(_driver.FindElement(By.TagName("nav")));
         SideBar = _driver.FindElement(By.ClassName("sidebar-main")).FindElements(By.ClassName("item")).ToList();
         PromoBlock = _driver.FindElement(By.CssSelector("div[class='block-promo']")).FindElements(By.TagName("a")).ToList();
