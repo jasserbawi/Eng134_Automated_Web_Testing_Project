@@ -11,7 +11,7 @@ public class FilterTopsBottomsStepDefinitions
     SL_Website _website;
 
     [BeforeScenario]
-    public void Setup() => _website = new SL_Website();
+    public void Setup() => _website = new SL_Website(pageLoadInSecs: 6);
 
     [Given(@"I am on the women page")]
     public void GivenIAmOnTheWomenPage()
