@@ -11,3 +11,13 @@ Scenario: Checkout with valid details
 	And I have selected a shipping method
 	When I click next
 	Then I will be taken to the payment method page
+
+@ignore
+@HappyPath
+@AC8.2
+Scenario: Checkout with invalid details
+	Given I am on the checkout page
+	And I have not entered required details
+	And I have selected a shipping method
+	When I click next
+	Then Each required field will be highlighted with an error message

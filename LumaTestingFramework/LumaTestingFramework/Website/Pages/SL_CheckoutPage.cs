@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V107.DOM;
+using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.UI;
 using SL_TestAutomationFramework;
 
@@ -33,7 +34,7 @@ public class SL_CheckoutPage
     private List<IWebElement> _shippingMethodChoices;
     private IWebElement _submitButton;
 
-    private List<IWebElement> _requiredFields;
+    private List<(IWebElement, bool)> _requiredFields;
     #endregion
 
     public SL_CheckoutPage(IWebDriver driver)
@@ -43,18 +44,10 @@ public class SL_CheckoutPage
     public void Navigate()
     {
         _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.Checkout);
-
         GetPageElements();
-
-        _state = _driver.FindElement(By.Id("shippingAddress.region_id")).FindElement(By.ClassName("select"));
-        _stateDropdown = new SelectElement(_state);
-        _country = _driver.FindElement(By.Id("shippingAddress.country_id")).FindElement(By.ClassName("select"));
-        _stateDropdown = new SelectElement(_country);
-        _submitButton = _driver.FindElement(By.ClassName("button action continue primary"));
-
-        GetShippingMethods();
-        GetRequiredFields();
     }
+
+    #region Public input functions
     public void EnterEmail(string email) => _email.SendKeys(email);
     public void EnterFirstName(string firstName) => _firstName.SendKeys(firstName);
     public void EnterLastName(string lastName) => _lastName.SendKeys(lastName);
@@ -68,10 +61,29 @@ public class SL_CheckoutPage
     public void SelectCountry(string countryName) => _countryDropdown.SelectByText(countryName);
     public void SelectState(string stateName) => _stateDropdown.SelectByText(stateName);
     public void SelectDefaultShipping() => _shippingMethodChoices[0].Click();
-    public void PressContinue() => _submitButton.Click();
+    public int GetNumberOfInvalidFields() => _requiredFields.Where((x)=> x.Item2).Count();
+    public void PressContinue()
+    {
+        _submitButton.Click();
+        //If submission did not work, refresh elements
+        if (_driver.Url == AppConfigReader.BaseUrl + AppConfigReader.Checkout)
+        {
+            GetPageElements();
+        }
+    }
+    #endregion
+
+    #region Private functions for retrieving elements
     private void GetPageElements()
     {
-        
+        GetTextInputElements();
+        GetDropDownMenus();
+        GetShippingMethods();
+        GetRequiredFields();
+    }
+    
+    private void GetTextInputElements()
+    {
         List<(string, IWebElement)> fields = new() {
             ("customer-email", _email),
             ("shippingAddress.firstName", _firstName),
@@ -91,21 +103,29 @@ public class SL_CheckoutPage
             PopulateTextInputElement(field.Item2, field.Item1);
         }
     }
-
     private void PopulateTextInputElement(IWebElement? element, string className)
     {
         element = _driver.FindElement(By.Name(className)).FindElement(By.ClassName("input-text"));
     }
-
+    private void GetDropDownMenus()
+    {
+        _state = _driver.FindElement(By.Id("shippingAddress.region_id")).FindElement(By.ClassName("select"));
+        _stateDropdown = new SelectElement(_state);
+        _country = _driver.FindElement(By.Id("shippingAddress.country_id")).FindElement(By.ClassName("select"));
+        _stateDropdown = new SelectElement(_country);
+        _submitButton = _driver.FindElement(By.ClassName("button action continue primary"));
+    }
     private void GetShippingMethods()
     {
-        _shippingMethod = _driver.FindElement(By.ClassName("table-checkout-shipping-method"));
-        _shippingMethodChoices = _driver.FindElements(By.ClassName("radio")).ToList();
+        _shippingMethodChoices = 
+            _driver
+            .FindElement(By.ClassName("table-checkout-shipping-method"))
+            .FindElements(By.ClassName("radio"))
+            .ToList();
     }
-
     private void GetRequiredFields()
     {
-        _requiredFields = new()
+        List<IWebElement> fields = new()
         {
             _email,
             _firstName,
@@ -117,5 +137,21 @@ public class SL_CheckoutPage
             _country,
             _phoneNumber
         };
+
+        _requiredFields = new();
+
+        foreach(IWebElement field in fields)
+        {
+            try
+            {
+                field.FindElement(By.ClassName("field-error"));
+                _requiredFields.Add((field, true));
+            }
+            catch
+            {
+                _requiredFields.Add((field, false));
+            }
+        }
     }
+    #endregion
 }

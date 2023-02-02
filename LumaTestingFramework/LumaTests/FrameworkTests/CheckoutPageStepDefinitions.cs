@@ -37,6 +37,12 @@ public class CheckoutPageStepDefinitions
         _website.CheckoutPage.SelectCountry("United States");
     }
 
+    [Given(@"I have not entered required details")]
+    public void GivenIHaveNotEnteredAnyRequiredDetails()
+    {
+    
+    }
+
     [Given(@"I have selected a shipping method")]
     public void GivenIHaveSelectedAShippingMethod()
     {
@@ -54,4 +60,14 @@ public class CheckoutPageStepDefinitions
     {
         Assert.That(_website.GetCurrentPageUrl(), Is.EqualTo("https://magento.softwaretestingboard.com/checkout/#payment"));
     }
+
+    
+
+    [Then(@"Each required field will be highlighted with an error message")]
+    public void ThenEachRequiredFieldWillBeHighlightedWithAnErrorMessage()
+    {
+        int requiredFields = _website.CheckoutPage.GetNumberOfInvalidFields();
+        Assert.That(requiredFields, Is.EqualTo(8));
+    }
+
 }
