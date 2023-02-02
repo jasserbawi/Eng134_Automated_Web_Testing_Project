@@ -17,5 +17,6 @@ public class SL_WomenPage : SL_StandardPage, INavigate
     {
         _driver.Navigate().GoToUrl(AppConfigReader.WomensPage);
         NavBar = new NavBar(_driver.FindElement(By.TagName("nav")));
+        PageHeader = new PageHeader(_driver.FindElement(By.CssSelector("header[class='page-header']")));
     }
 }
