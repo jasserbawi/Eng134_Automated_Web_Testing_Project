@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace LumaTests
+namespace LumaTests.AcceptanceTests
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace LumaTests
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "HomePage", "As a user, I want a home page, so that I can access new collections and suggested" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AcceptanceTests", "HomePage", "As a user, I want a home page, so that I can access new collections and suggested" +
                     " items.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }

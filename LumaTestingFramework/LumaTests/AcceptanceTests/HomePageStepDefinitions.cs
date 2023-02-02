@@ -1,91 +1,111 @@
 ﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using LumaTestingFramework.Website.Pages;
+using LumaTestingFramework.Website;
+using SL_TestAutomationFramework;
+using LumaTestingFramework.Website.Driver;
+using OpenQA.Selenium.Chrome;
 
-namespace LumaTests;
+namespace LumaTests.AcceptanceTests;
 
+[Binding]
+[Scope(Feature = "HomePage")]
 public class HomePageStepDefinitions
 {
-    private SL_Homepage<ChromeDriver> SL_Website = new();
+    private SL_Website _website;
     private IWebDriver _driver;
-    
+
+    [Before]
+    public void Setup()
+    {
+        _website = new SL_Website();
+        DriverConfig<ChromeDriver> _driverConfig = new(17, 17, true);
+        _driver = _driverConfig.Driver;
+    }
+
     [Given(@"I am on the homepage")]
     public void GivenIAmOnTheHomepage()
     {
-        throw new PendingStepException();
+        _website.Homepage.Navigate();
     }
 
     [When(@"I click on the New Luma Yoga Collection")]
     public void WhenIClickOnTheNewLumaYogaCollection()
     {
-        throw new PendingStepException();
+        Thread.Sleep(10000);
+        _website.Homepage.ClickYogaCollections();
     }
 
     [Then(@"I am taken to the New Luma Yoga Collection page")]
     public void ThenIAmTakenToTheNewLumaYogaCollectionPage()
     {
-        throw new PendingStepException();
+        Assert.That(_driver.Url, Is.EqualTo(AppConfigReader.BaseUrl + "collections/yoga-new.html"));
     }
 
     [When(@"I click on the Luma Pants Collection Discount")]
     public void WhenIClickOnTheLumaPantsCollectionDiscount()
     {
-        throw new PendingStepException();
+        _website.Homepage.ClickPantsPromotions();
     }
 
     [Then(@"I am taken to the Luma Pants Collection Discount page")]
     public void ThenIAmTakenToTheLumaPantsCollectionDiscountPage()
     {
-        throw new PendingStepException();
+        Assert.That(_driver.Url, Is.EqualTo(AppConfigReader.BaseUrl + "promotions/pants-all.html"));
     }
+
 
     [When(@"I click on the Tees Collection Discount")]
     public void WhenIClickOnTheTeesCollectionDiscount()
     {
-        throw new PendingStepException();
+        _website.Homepage.ClickTeesPromotions();
     }
 
     [Then(@"I am taken to the Tees Collection Discount page")]
     public void ThenIAmTakenToTheTeesCollectionDiscountPage()
     {
-        throw new PendingStepException();
+        Assert.That(_driver.Url, Is.EqualTo(AppConfigReader.BaseUrl + "promotions/tees-all.html"));
     }
 
     [When(@"I click Erin Recommends")]
     public void WhenIClickErinRecommends()
     {
-        throw new PendingStepException();
+        _website.Homepage.ClickErinsPromotions();
     }
 
     [Then(@"I am taken to the Erin Recommends page")]
     public void ThenIAmTakenToTheErinRecommendsPage()
     {
-        throw new PendingStepException();
+        Assert.That(_driver.Url, Is.EqualTo(AppConfigReader.BaseUrl + "collections/erin-recommends.html"));
     }
 
     [When(@"I click Shop Performance")]
     public void WhenIClickShopPerformance()
     {
-        throw new PendingStepException();
+        _website.Homepage.ClickPerformanceCollections();
     }
 
     [Then(@"I am taken to the Science Meets Performance Collection page")]
     public void ThenIAmTakenToTheScienceMeetsPerformanceCollectionPage()
     {
-        throw new PendingStepException();
+        Assert.That(_driver.Url, Is.EqualTo(AppConfigReader.BaseUrl + "collections/performance-fabrics.html"));
     }
 
     [When(@"I click on the Eco-Friendly Collection")]
     public void WhenIClickOnTheEco_FriendlyCollection()
     {
-        throw new PendingStepException();
+        _website.Homepage.ClickEcoFriendlyCollections();
     }
 
     [Then(@"I am taken to the Eco-Friendly Collection page")]
     public void ThenIAmTakenToTheEco_FriendlyCollectionPage()
     {
-        throw new PendingStepException();
+        Assert.That(_driver.Url, Is.EqualTo(AppConfigReader.BaseUrl + "collections/eco-friendly.html"));
     }
 
+    [AfterScenario]
+    public void TearDown()
+    {
+        _driver.Quit();
+        _driver.Dispose();
+    }
 }
