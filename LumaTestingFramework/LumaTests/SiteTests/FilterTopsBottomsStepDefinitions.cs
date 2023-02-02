@@ -24,7 +24,7 @@ public class FilterTopsBottomsStepDefinitions
     [Then(@"I should be redirected to the women's tops page")]
     public void ThenIShouldBeRedirectedToTheWomensTopsPage()
     {
-        Assert.That(_website.GetCurrentUrl(), Is.EqualTo(AppConfigReader.BaseUrl + "women/tops-women.html"));
+        Assert.That(_website.GetCurrentPageUrl(), Is.EqualTo(AppConfigReader.BaseUrl + "women/tops-women.html"));
     }
 
     [When(@"I click the bottoms filter option")]
@@ -33,7 +33,7 @@ public class FilterTopsBottomsStepDefinitions
     [Then(@"I should be redirected to the women's bottoms page")]
     public void ThenIShouldBeRedirectedToTheWomensBottomsPage()
     {
-        Assert.That(_website.GetCurrentUrl(), Is.EqualTo(AppConfigReader.BaseUrl + "women/bottoms-women.html"));
+        Assert.That(_website.GetCurrentPageUrl(), Is.EqualTo(AppConfigReader.BaseUrl + "women/bottoms-women.html"));
     }
 
     [Given(@"I am on the men page")]

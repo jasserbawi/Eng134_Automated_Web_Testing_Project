@@ -10,7 +10,7 @@ public class SL_WomenPage : SL_StandardPage, INavigate
     public NavBar NavBar { get; private set; }
     public List<IWebElement> SideBar { get; private set; }
     public List<IWebElement> PromoBlock { get; private set; }
-    public List<Product> HotSellers { get; private set; }
+    public List<Product> Products { get; private set; }
 
     public SL_WomenPage(IWebDriver driver) : base(driver) { }
 
@@ -20,7 +20,7 @@ public class SL_WomenPage : SL_StandardPage, INavigate
         NavBar = new NavBar(_driver.FindElement(By.TagName("nav")));
         SideBar = _driver.FindElement(By.ClassName("sidebar-main")).FindElements(By.ClassName("item")).ToList();
         PromoBlock = _driver.FindElement(By.CssSelector("div[class='block-promo']")).FindElements(By.TagName("a")).ToList();
-        HotSellers = Product.ProductsList(_driver);
+        Products = Product.ProductsList(_driver);
     }
 
     public void ClickYogaCollection() => PromoBlock[0].Click();
