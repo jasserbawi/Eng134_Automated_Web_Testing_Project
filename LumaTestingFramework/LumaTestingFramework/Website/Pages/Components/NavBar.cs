@@ -26,27 +26,27 @@ public class NavBar
         WhatsNew.Click();
     }
 
-    public void ClickOnToWomen()
+    public void ClickOnWomen()
     {
         Women.Click();
     }
 
-    public void ClickOnToMen()
+    public void ClickOnMen()
     {
         Men.Click();
     }
 
-    public void ClickOnToGear()
+    public void ClickOnGear()
     {
         Gear.Click();
     }
 
-    public void ClickOnToTraining()
+    public void ClickOnTraining()
     {
         Training.Click();
     }
 
-    public void ClickOnToSale()
+    public void ClickOnSale()
     {
         Sale.Click();
     }

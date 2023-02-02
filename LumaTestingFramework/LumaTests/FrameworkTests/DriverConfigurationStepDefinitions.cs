@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 namespace LumaTests.FrameworkTests;
 
 [Binding]
+[Scope(Feature = "DriverConfiguration")]
 public class DriverConfigurationStepDefinitions
 {
     private DriverConfig<ChromeDriver> _driverConfig;
@@ -36,7 +37,7 @@ public class DriverConfigurationStepDefinitions
         Assert.That(_driver.Manage().Timeouts().ImplicitWait, Is.EqualTo(TimeSpan.FromSeconds(implicitWaitInSeconds)));
     }
 
-    [AfterScenario]
+    [After]
     public void TearDown()
     {
         _driver.Quit();
