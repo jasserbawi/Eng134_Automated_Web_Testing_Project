@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("I am on the women page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-testRunner.When("I click the tops filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("I click the womens tops filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
 testRunner.Then("I should be redirected to the women\'s tops page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("I am on the women page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 16
-testRunner.When("I click the bottoms filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("I click the womens bottoms filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
 testRunner.Then("I should be redirected to the women\'s bottoms page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -166,7 +166,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("I am on the men page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 23
-testRunner.When("I click the tops filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("I click the mens tops filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 24
 testRunner.Then("I should be redirected to the men\'s tops page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -200,7 +200,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("I am on the men page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 30
-testRunner.When("I click the bottoms filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("I click the mens bottoms filter option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 31
 testRunner.Then("I should be redirected to the men\'s bottoms page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
