@@ -14,7 +14,7 @@ public class CheckoutPageStepDefinitions
     [OneTimeSetUp]
     public void Setup()
     {
-        _website = new(3, 3, false);
+        _website = new(3, 3, true);
     }
 
     [Given(@"I have an item in the basket")]

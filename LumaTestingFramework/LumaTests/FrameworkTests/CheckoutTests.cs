@@ -16,7 +16,7 @@ public class CheckoutTests
     [Test]
     public void WithItemsInBasket_CanNavigateToCheckoutPage()
     {
-        _driverConfig = new(10, 10, false);
+        _driverConfig = new(10, 10, true);
         _driver = _driverConfig.Driver;
         _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.MensBottoms);
         var productList = Product.ProductsList(_driver);
