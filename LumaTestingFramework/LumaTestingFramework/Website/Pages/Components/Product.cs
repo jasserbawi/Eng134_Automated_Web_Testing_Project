@@ -12,6 +12,28 @@ namespace LumaTestingFramework.Website.Pages.Components
         IWebElement AddToWishListButton { get; set; }
         IWebElement AddToCompareButton { get; set; }
 
+        public void AddRandomItemToCart()
+        {
+            PickAnyColour();
+            PickAnySize();
+            AddingToCart();
+        }
+        public void PickAnyColour()
+        {
+            if (colourOptions.Any())
+            {
+                var listOfColourOptions = colourOptions.Keys.ToList();
+                SelectColor(listOfColourOptions[0]);
+            }
+        }
+        public void PickAnySize()
+        {
+            if (sizeOptions.Any())
+            {
+                var listOfSizeOptions = sizeOptions.Keys.ToList();
+                SelectColor(listOfSizeOptions[0]);
+            }
+        }
         public void AddingToCart() => AddToCartButton.Click();
         public void NavigateToItemPage() => ItemPageLink.Click();
         public void AddingToWishList() => AddToWishListButton.Click();
@@ -49,13 +71,14 @@ namespace LumaTestingFramework.Website.Pages.Components
             AddToWishListButton = productElement.FindElement(By.ClassName("action towishlist"));
             AddToCompareButton = productElement.FindElement(By.ClassName("action tocompare"));
             
-            var colourElements = productElement.FindElements(By.ClassName("color-option"));
+            var colourElements = productElement.FindElement(By.ClassName("swatch-attribute color")).FindElements(By.ClassName("swatch-attribute-options clearfix"));
             foreach (var colourElement in colourElements)
             {
                 var colour = colourElement.GetAttribute("value");
                 colourOptions[colour] = colourElement;
             }
-            var sizeElements = productElement.FindElements(By.ClassName("size-option"));
+
+            var sizeElements = productElement.FindElement(By.ClassName("swatch-attribute size")).FindElements(By.ClassName("swatch-attribute-options clearfix"));
             foreach (var sizeElement in sizeElements)
             {
                 var size = sizeElement.GetAttribute("value");
@@ -64,6 +87,6 @@ namespace LumaTestingFramework.Website.Pages.Components
         }
 
         public static List<Product> ProductsList(IWebDriver driver) =>
-            driver.FindElements(By.ClassName("product-items widget-product-grid")).Select(e => new Product(e)).ToList();
+            driver.FindElements(By.ClassName("products list items product-items")).Select(e => new Product(e)).ToList();
     }
 }
