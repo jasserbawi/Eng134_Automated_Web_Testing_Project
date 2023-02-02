@@ -30,4 +30,6 @@ public class SL_WomenPage : SL_StandardPage, INavigate
     public void ClickYogaCollection() => PromoBlock[0].Click();
     public void ClickWomensTeesPromo() => PromoBlock[1].Click();
     public void ClickPantsPromo() => PromoBlock[2].Click();
+    public void ClickTopsLink() => SideBar[0].Click();
+    public void ClickBottomsLink() => SideBar[1].Click();
 }
