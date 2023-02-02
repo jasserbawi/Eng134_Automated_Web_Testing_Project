@@ -4,8 +4,8 @@ namespace LumaTestingFramework.Website.Pages.Components
 {
     public class Product
     {
-        private Dictionary<string, IWebElement> colourOptions;
-        private Dictionary<string, IWebElement> sizeOptions;
+        private Dictionary<string, IWebElement> _colourOptions;
+        private Dictionary<string, IWebElement> _sizeOptions;
         IWebElement AddToCartButton { get; set; }
         IWebElement ItemPageLink { get; set; }
         IWebElement Price { get; set; }
@@ -20,17 +20,17 @@ namespace LumaTestingFramework.Website.Pages.Components
         }
         public void PickAnyColour()
         {
-            if (colourOptions.Any())
+            if (_colourOptions.Any())
             {
-                var listOfColourOptions = colourOptions.Keys.ToList();
+                var listOfColourOptions = _colourOptions.Keys.ToList();
                 SelectColor(listOfColourOptions[0]);
             }
         }
         public void PickAnySize()
         {
-            if (sizeOptions.Any())
+            if (_sizeOptions.Any())
             {
-                var listOfSizeOptions = sizeOptions.Keys.ToList();
+                var listOfSizeOptions = _sizeOptions.Keys.ToList();
                 SelectColor(listOfSizeOptions[0]);
             }
         }
@@ -41,7 +41,7 @@ namespace LumaTestingFramework.Website.Pages.Components
         public string CheckingPrice() => Price.Text;
         public void SelectColor(string colour)
         {
-            if (colourOptions.TryGetValue(colour, out IWebElement colourOption))
+            if (_colourOptions.TryGetValue(colour, out IWebElement colourOption))
             {
                 colourOption.Click();
             }
@@ -53,7 +53,7 @@ namespace LumaTestingFramework.Website.Pages.Components
 
         public void SelectSize(string size)
         {
-            if (sizeOptions.TryGetValue(size, out IWebElement sizeOption))
+            if (_sizeOptions.TryGetValue(size, out IWebElement sizeOption))
             {
                 sizeOption.Click();
             }
@@ -75,14 +75,14 @@ namespace LumaTestingFramework.Website.Pages.Components
             foreach (var colourElement in colourElements)
             {
                 var colour = colourElement.GetAttribute("value");
-                colourOptions[colour] = colourElement;
+                _colourOptions[colour] = colourElement;
             }
 
             var sizeElements = productElement.FindElement(By.ClassName("swatch-attribute size")).FindElements(By.ClassName("swatch-attribute-options clearfix"));
             foreach (var sizeElement in sizeElements)
             {
                 var size = sizeElement.GetAttribute("value");
-                sizeOptions[size] = sizeElement;
+                _sizeOptions[size] = sizeElement;
             }
         }
 
