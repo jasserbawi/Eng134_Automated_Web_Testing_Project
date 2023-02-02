@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 namespace LumaTests.FrameworkTests;
 
 [Binding]
+[Scope(Feature = "DriverConfiguration")]
 public class DriverConfigurationStepDefinitions
 {
     private DriverConfig<ChromeDriver> _driverConfig;
