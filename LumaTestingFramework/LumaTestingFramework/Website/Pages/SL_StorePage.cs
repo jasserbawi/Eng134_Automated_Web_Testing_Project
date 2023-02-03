@@ -19,6 +19,11 @@ public abstract class SL_StorePage : SL_StandardPage
     {
         _products[0].AddToCart();
     }
+
+    public int GetNumberOfProducts()
+    {
+        return _products.Count();
+    }
 }
 public class SL_MensTops : SL_StorePage, INavigate
 {
