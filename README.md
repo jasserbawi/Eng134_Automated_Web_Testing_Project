@@ -5,7 +5,7 @@ An automated web testing framework written in C# using Selenium driver and Nunit
 1. Install [Visual Studio](https://visualstudio.microsoft.com/)
 2. Download and unzip the project from the releases sidebar
 3. Create an NUnit test project to hold your tests
-4. Add a reference to the testing framework library to your solution
+5. Add a reference to the testing framework library to your solution
 
 ## Usage
 The framework is built around the SL_Website class which contains a website driver and page objects representating each page on the website. You can navigate to a page using that page object's `Navigate()` function, for example the following code navigates to the women page.
@@ -20,3 +20,6 @@ Each page object contains properties or fields representing each of the interact
 ``` C#
     _website.WomenPage.ClickTopsLink();
 ```
+
+## Examples
+We have included some example tests using the [specflow](https://specflow.org/tools/specflow/) BDD tool in the repository which can be used as an additional reference.
