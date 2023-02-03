@@ -22,4 +22,10 @@
     <ProjectReference Include="..\LumaTestingFramework\LumaTestingFramework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Testhost.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

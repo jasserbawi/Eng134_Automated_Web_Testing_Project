@@ -52,9 +52,12 @@ public class SL_CheckoutPage
     public void EnterFirstName(string firstName) => _firstName.SendKeys(firstName);
     public void EnterLastName(string lastName) => _lastName.SendKeys(lastName);
     public void EnterCompany(string company) => _company.SendKeys(company);
-    public void EnterAddressLine1(string addressLine) => _addressLine1.SendKeys(addressLine);
-    public void EnterAddressLine2(string addressLine) => _addressLine2.SendKeys(addressLine);
-    public void EnterAddressLine3(string addressLine) => _addressLine3.SendKeys(addressLine);
+    public void EnterAddress(string addressLine1 = "", string addressLine2 = "", string addressLine3 = "")
+    {
+        _addressLine1.SendKeys(addressLine1);
+        _addressLine2.SendKeys(addressLine2);
+        _addressLine3.SendKeys(addressLine3);
+    }
     public void EnterCity(string city) => _city.SendKeys(city);
     public void EnterPostcode(string postcode) => _postcode.SendKeys(postcode);
     public void EnterPhoneNumber(string postcode) => _phoneNumber.SendKeys(postcode);
@@ -84,28 +87,16 @@ public class SL_CheckoutPage
     
     private void GetTextInputElements()
     {
-        List<(string, IWebElement)> fields = new() {
-            ("customer-email", _email),
-            ("shippingAddress.firstName", _firstName),
-            ("shippingAddress.lastName", _lastName),
-            ("shippingAddress.company", _company),
-            ("shippingAddress.street.0", _addressLine1),
-            ("shippingAddress.street.1", _addressLine2),
-            ("shippingAddress.street.2", _addressLine3),
-            ("shippingAddress.city", _city),
-            ("shippingAddress.postcode", _postcode),
-            ("shippingAddress.telephone", _phoneNumber)
-        };
-
-        for(int i = 0; i < fields.Count; i++)
-        {
-            (string, IWebElement) field = fields[i];
-            PopulateTextInputElement(field.Item2, field.Item1);
-        }
-    }
-    private void PopulateTextInputElement(IWebElement? element, string className)
-    {
-        element = _driver.FindElement(By.Name(className)).FindElement(By.ClassName("input-text"));
+        _email = _driver.FindElement(By.Name("customer-email")).FindElement(By.ClassName("input-text"));
+        _firstName = _driver.FindElement(By.Name("shippingAddress.firstName")).FindElement(By.ClassName("input-text"));
+        _lastName = _driver.FindElement(By.Name("shippingAddress.lastName")).FindElement(By.ClassName("input-text"));
+        _company = _driver.FindElement(By.Name("shippingAddress.company")).FindElement(By.ClassName("input-text"));
+        _addressLine1 = _driver.FindElement(By.Name("shippingAddress.street.0")).FindElement(By.ClassName("input-text"));
+        _addressLine2 = _driver.FindElement(By.Name("shippingAddress.street.1")).FindElement(By.ClassName("input-text"));
+        _addressLine3 = _driver.FindElement(By.Name("shippingAddress.street.2")).FindElement(By.ClassName("input-text"));
+        _city = _driver.FindElement(By.Name("shippingAddress.city")).FindElement(By.ClassName("input-text"));
+        _postcode = _driver.FindElement(By.Name("shippingAddress.postcode")).FindElement(By.ClassName("input-text"));
+        _phoneNumber = _driver.FindElement(By.Name("shippingAddress.telephone")).FindElement(By.ClassName("input-text"));
     }
     private void GetDropDownMenus()
     {
