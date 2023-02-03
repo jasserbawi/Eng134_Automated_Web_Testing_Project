@@ -18,15 +18,14 @@ public class CheckoutTests
     [Test]
     public void WithItemsInBasket_CanNavigateToCheckoutPage()
     {
-        _website = new(10, 10, true);
+        _website = new(10, 10, false);
         _website.WomensTops.Navigate();
         _website.WomensTops.AddProductToBasket();
-        Thread.Sleep(1000);
         _website.CheckoutPage.Navigate();
 
         string checkoutUrl = AppConfigReader.BaseUrl + AppConfigReader.Checkout;
 
-        Assert.That(_driver.Url, Is.EqualTo(checkoutUrl));
+        Assert.That(_website.GetCurrentPageUrl(), Is.EqualTo(checkoutUrl));
 
     }
 

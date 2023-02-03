@@ -44,7 +44,7 @@ public class SL_CheckoutPage
     public void Navigate()
     {
         _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.Checkout);
-        GetPageElements();
+        //GetPageElements();
     }
 
     #region Public input functions
@@ -87,24 +87,24 @@ public class SL_CheckoutPage
     
     private void GetTextInputElements()
     {
-        _email = _driver.FindElement(By.Name("customer-email")).FindElement(By.ClassName("input-text"));
-        _firstName = _driver.FindElement(By.Name("shippingAddress.firstName")).FindElement(By.ClassName("input-text"));
-        _lastName = _driver.FindElement(By.Name("shippingAddress.lastName")).FindElement(By.ClassName("input-text"));
-        _company = _driver.FindElement(By.Name("shippingAddress.company")).FindElement(By.ClassName("input-text"));
-        _addressLine1 = _driver.FindElement(By.Name("shippingAddress.street.0")).FindElement(By.ClassName("input-text"));
-        _addressLine2 = _driver.FindElement(By.Name("shippingAddress.street.1")).FindElement(By.ClassName("input-text"));
-        _addressLine3 = _driver.FindElement(By.Name("shippingAddress.street.2")).FindElement(By.ClassName("input-text"));
-        _city = _driver.FindElement(By.Name("shippingAddress.city")).FindElement(By.ClassName("input-text"));
-        _postcode = _driver.FindElement(By.Name("shippingAddress.postcode")).FindElement(By.ClassName("input-text"));
-        _phoneNumber = _driver.FindElement(By.Name("shippingAddress.telephone")).FindElement(By.ClassName("input-text"));
+        _email = _driver.FindElement(By.Id("customer-email"));
+        _firstName = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[1]/div/input"));
+        _lastName = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[2]/div/input"));
+        _company = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[3]/div/input"));
+        _addressLine1 = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/fieldset/div/div[1]/div/input"));
+        _addressLine2 = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/fieldset/div/div[2]/div/input"));
+        _addressLine3 = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/fieldset/div/div[3]/div/input"));
+        _city = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[4]/div/input"));
+        _postcode = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[7]/div/input"));
+        _phoneNumber = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[9]/div/input"));
     }
     private void GetDropDownMenus()
     {
-        _state = _driver.FindElement(By.Id("shippingAddress.region_id")).FindElement(By.ClassName("select"));
+        _state = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[5]/div/select"));
         _stateDropdown = new SelectElement(_state);
-        _country = _driver.FindElement(By.Id("shippingAddress.country_id")).FindElement(By.ClassName("select"));
+        _country = _driver.FindElement(By.XPath("/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form[2]/div/div[8]/div/select"));
         _stateDropdown = new SelectElement(_country);
-        _submitButton = _driver.FindElement(By.ClassName("button action continue primary"));
+        _submitButton = _driver.FindElement(By.CssSelector(".button.action.continue.primary"));
     }
     private void GetShippingMethods()
     {
