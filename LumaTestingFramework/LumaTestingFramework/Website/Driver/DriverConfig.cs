@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 
-namespace LumaTestingFramework.Website.Driver;
+namespace LumaTestingFramework.Website._driver;
 public class DriverConfig<T> where T : IWebDriver, new()
 {
     public IWebDriver Driver { get; internal set; }

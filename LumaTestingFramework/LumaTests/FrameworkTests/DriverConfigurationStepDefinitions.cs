@@ -1,4 +1,4 @@
-using LumaTestingFramework.Website.Driver;
+using LumaTestingFramework.Website._driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;

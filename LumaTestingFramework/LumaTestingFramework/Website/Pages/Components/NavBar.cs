@@ -11,12 +11,8 @@ public class NavBar
     public IWebElement Training { get; private set; }
     public IWebElement Sale { get; private set; }
 
-<<<<<<< HEAD
-
-    public NavBar()
-=======
     public NavBar(IWebElement navElement)
->>>>>>> dev
+
     {
         WhatsNew = navElement.FindElement(By.Id("ui-id-3"));
         Women = navElement.FindElement(By.Id("ui-id-4"));

@@ -8,14 +8,16 @@ public class SL_WomenPage : SL_StandardPage, INavigate
 {
     public NavBar NavBar { get; private set; }
     public PageHeader PageHeader { get; private set; }
+    public List<Product> Products { get; private set; }
 
-    protected SL_WomenPage(IWebDriver driver) : base(driver)
+    public SL_WomenPage(IWebDriver driver) : base(driver)
     {
+        Products = Product.ProductsList(_driver);
     }
 
     public void Navigate()
     {
-        _driver.Navigate().GoToUrl(AppConfigReader.WomensPage);
+        _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.WomensPage);
         NavBar = new NavBar(_driver.FindElement(By.TagName("nav")));
         PageHeader = new PageHeader(_driver.FindElement(By.CssSelector("header[class='page-header']")));
     }
