@@ -9,11 +9,11 @@ namespace LumaTestingFramework.Website;
 public class SL_Website 
 {
     #region Pages
-    public SL_Homepage Homepage { get; set; }
-    public SL_CheckoutPage CheckoutPage { get; set;}
-    public SL_WomenPage WomenPage { get; set;}
-    public SL_BasketPage BasketPage { get; set;}
-
+    public SL_Homepage Homepage { get; }
+    public SL_WomenPage WomenPage { get; }
+    public SL_CheckoutPage CheckoutPage { get; }
+    public SL_MenPage MenPage { get; }
+    public SL_BasketPage BasketPage { get; }
 
 
     #endregion
@@ -21,22 +21,21 @@ public class SL_Website
     IWebDriver _driver;
     public SL_Website(int pageLoadInSecs = 3, int implicitWaitInSecs = 3, bool headless = true)
     {
-        _driver = DriverSetup(pageLoadInSecs, implicitWaitInSecs, headless);
+        DriverConfig<ChromeDriver> driverConfig = new(pageLoadInSecs, implicitWaitInSecs, headless);
+        _driver = driverConfig.Driver; ;
+
         Homepage = new SL_Homepage(_driver);
         CheckoutPage = new SL_CheckoutPage(_driver);
         WomenPage = new SL_WomenPage(_driver);
+        MenPage = new SL_MenPage(_driver);
         BasketPage = new SL_BasketPage(_driver);
-
+        
     }
 
-    public string GetCurrentPageUrl()
+    public string GetCurrentPageUrl() => _driver.Url;
+    public void DisposeOfDriver()
     {
-        return _driver.Url;
-    }
-
-    public IWebDriver DriverSetup(int pageLoadInSecs, int implicitWaitInSecs, bool headless)
-    {
-        DriverConfig<ChromeDriver> driverConfig = new(pageLoadInSecs, implicitWaitInSecs, headless);
-        return driverConfig.Driver;
+        _driver.Quit();
+        _driver.Dispose();
     }
 }

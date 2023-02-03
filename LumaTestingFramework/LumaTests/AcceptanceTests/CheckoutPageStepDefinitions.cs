@@ -6,6 +6,7 @@ using TechTalk.SpecFlow;
 namespace LumaTests.AcceptanceTests;
 
 [Binding]
+[Scope(Feature = "CheckoutPage")]
 public class CheckoutPageStepDefinitions
 {
     SL_Website _website;
@@ -20,8 +21,8 @@ public class CheckoutPageStepDefinitions
     [Given(@"I have an item in the basket")]
     public void GivenIHaveAnItemInTheBasket()
     {
-        _website.WomenPage.Navigate();
-        _website.WomenPage.Products[0].AddRandomItemToCart();
+        //_website.WomenPage.Navigate();
+        //_website.WomenPage.Products[0].AddRandomItemToCart();
     }
 
     [Given(@"I am on the checkout page")]
@@ -86,4 +87,7 @@ public class CheckoutPageStepDefinitions
         int requiredFields = _website.CheckoutPage.GetNumberOfInvalidFields();
         Assert.That(requiredFields, Is.EqualTo(8));
     }
+
+    [After]
+    public void TearDown() => _website.DisposeOfDriver();
 }
