@@ -93,7 +93,5 @@ namespace LumaTestingFramework.Website.Pages.Components
                 sizeOptions[size] = sizeElement;
             }
         }
-
-        
     }
 }
