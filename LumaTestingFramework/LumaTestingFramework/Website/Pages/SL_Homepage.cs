@@ -6,31 +6,31 @@ namespace LumaTestingFramework.Website.Pages;
 
 public class SL_Homepage : SL_StandardPage, INavigate
 {
+    #region Fields and properties
+    private IWebElement _yogaCollectionRedirect => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/a"));
     public NavBar NavBar { get; private set; }
     public PageHeader PageHeader { get; private set; }
-    public SL_Homepage(IWebDriver driver) : base(driver)
-    {
-        //Setup IWebElements and custom objects
-    }
-    
-    private IWebElement _yogaCollectionRedirect => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/a"));
-    private IWebElement _pantsPromotionsRedirect => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[1]"));
-    private IWebElement _teesPromotoinsRedirect => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[2]"));
-    private IWebElement _erinsRecommendationsRedirect => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[3]"));
-    private IWebElement _performanceCollectionsRedirect => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[4]"));
-    private IWebElement _ecoFriendlyCollectionsRedirect => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[5]"));
+    public List<IWebElement> PromoBlock { get; private set; }
+    #endregion
 
+    #region Constructors
+    public SL_Homepage(IWebDriver driver) : base(driver) { }
+    #endregion
+
+    #region Helper Methods
     public void ClickYogaCollections() => _yogaCollectionRedirect.Click();
-    public void ClickPantsPromotions() => _pantsPromotionsRedirect.Click();
-    public void ClickTeesPromotions() => _teesPromotoinsRedirect.Click();
-    public void ClickErinsPromotions() => _erinsRecommendationsRedirect.Click();
-    public void ClickPerformanceCollections() => _performanceCollectionsRedirect.Click();
-    public void ClickEcoFriendlyCollections() => _ecoFriendlyCollectionsRedirect.Click();
+    public void ClickPantsPromotions() => PromoBlock[0].Click();
+    public void ClickTeesPromotions() => PromoBlock[1].Click();
+    public void ClickErinsPromotions() => PromoBlock[2].Click();
+    public void ClickPerformanceCollections() => PromoBlock[3].Click();
+    public void ClickEcoFriendlyCollections() => PromoBlock[4].Click();
 
     public void Navigate()
     {
-        base._driver.Navigate().GoToUrl(AppConfigReader.BaseUrl);
-        NavBar = new NavBar(base._driver.FindElement(By.TagName("nav")));
-        PageHeader = new PageHeader(base._driver.FindElement(By.CssSelector("header[class='page-header']")));
+        _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl);
+        PageHeader = new PageHeader(_driver.FindElement(By.CssSelector("header[class='page-header']")));
+        NavBar = new NavBar(_driver.FindElement(By.TagName("nav")));
+        PromoBlock = _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div")).FindElements(By.TagName("a")).ToList();
     }
+    #endregion
 }
