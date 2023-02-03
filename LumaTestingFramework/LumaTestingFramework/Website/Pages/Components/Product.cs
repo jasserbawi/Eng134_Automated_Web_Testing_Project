@@ -13,12 +13,12 @@ namespace LumaTestingFramework.Website.Pages.Components
         IWebElement AddToWishListButton { get; set; }
         IWebElement AddToCompareButton { get; set; }
 
-        public void AddRandomItemToCart()
+        public void AddRandomItemToCart(SL_StandardPage page)
         {
             PickAnySize();
             PickAnyColour();
             AddToCartButton = _webElement.FindElement(By.CssSelector(".action.tocart.primary"));
-            AddingToCart();
+            AddingToCart(page);
         }
         public void PickAnyColour()
         {
@@ -36,7 +36,12 @@ namespace LumaTestingFramework.Website.Pages.Components
                 SelectSize(listOfSizeOptions[0]);
             }
         }
-        public void AddingToCart() => AddToCartButton.Click();
+        public void AddingToCart(SL_StandardPage page)
+        {
+            page.MouseOver(_webElement);
+            page.MouseOver(AddToCartButton);
+            AddToCartButton.Click();
+        }
         public void NavigateToItemPage() => ItemPageLink.Click();
         public void AddingToWishList() => AddToWishListButton.Click();
         public void AddingToCompare() => AddToCompareButton.Click();

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using LumaTestingFramework.Website.Pages.Components;
+using OpenQA.Selenium.Interactions;
 
 namespace LumaTestingFramework.Website.Pages;
 
@@ -16,5 +17,14 @@ public abstract class SL_StandardPage
     public SL_StandardPage(IWebDriver driver)
     {
         _driver = driver;
+    }
+
+    /// <summary>
+    /// Place the mouse over a webElement on this page
+    /// </summary>
+    /// <param name="webElement"></param>
+    public void MouseOver(IWebElement webElement)
+    {
+        new Actions(_driver).MoveToElement(webElement).Perform();
     }
 }

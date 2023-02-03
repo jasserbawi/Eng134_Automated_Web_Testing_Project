@@ -12,7 +12,7 @@ public class WomensTopsPageStepDefinitions
     SL_Website _website;
 
     [BeforeScenario]
-    public void Setup() => _website = new SL_Website(pageLoadInSecs: 6);
+    public void Setup() => _website = new SL_Website(pageLoadInSecs: 6, headless: false);
 
     [Given(@"I am on the womens tops page")]
     public void GivenIAmOnTheWomensTopsPage()
@@ -29,13 +29,17 @@ public class WomensTopsPageStepDefinitions
     [When(@"I add a random item to the basket")]
     public void WhenIAddARandomItemToTheBasket()
     {
-        _website.WomensTopsPage.Products[0].AddRandomItemToCart();
+        _website.WomensTopsPage.Products[0].AddRandomItemToCart(_website.WomensTopsPage);
     }
 
     [Then(@"The number of items in my basket is (.*)")]
     public void ThenACounterOfTheNumberOfItemsInMyBasketAppears(int expected)
     {
-        int numInCart = int.Parse(_website.WomensTopsPage.MiniCart.FindElement(By.ClassName("counter-number")).Text);
+        string cartString = _website.WomensTopsPage.MiniCart.FindElement(By.ClassName("counter-label")).Text;
+        int numInCart = int.Parse(cartString);
         Assert.That(numInCart, Is.EqualTo(expected));
     }
+
+    [AfterScenario]
+    public void TearDown() => _website.DisposeOfDriver();
 }
