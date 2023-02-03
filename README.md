@@ -15,7 +15,7 @@ The framework is built around the SL_Website class which contains a website driv
     _website.WomenPage.Navigate();
 ```
 
-Each page object contains properties or fields representing each of the interactable elements found on that page and helper functions used to interact with or extract information from the page, once all the helper functions are written most features should be testable using these. 
+Each page object contains properties or fields representing each of the interactable elements found on that page and helper functions used to interact with or extract information from the page, once all the helper functions are written most features should be testable using these. The following code will click on the Tops link in the Women page.
 
 ``` C#
     _website.WomenPage.ClickTopsLink();
