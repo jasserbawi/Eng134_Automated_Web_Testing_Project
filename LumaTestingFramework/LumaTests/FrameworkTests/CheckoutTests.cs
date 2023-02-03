@@ -14,11 +14,12 @@ public class CheckoutTests
     private DriverConfig<ChromeDriver> _driverConfig;
     private SL_Website _website;
 
+    [Ignore("Descoped")]
     [Category("Checkout Framework Tests")]
     [Test]
     public void WithItemsInBasket_CanNavigateToCheckoutPage()
     {
-        _website = new(10, 10, false);
+        _website = new(10, 10, true);
         _website.WomensTops.Navigate();
         _website.WomensTops.AddProductToBasket();
         _website.CheckoutPage.Navigate();
