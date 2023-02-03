@@ -13,7 +13,7 @@ namespace LumaTestingFramework.Website.Pages.Components
         IWebElement AddToWishListButton { get; set; }
         IWebElement AddToCompareButton { get; set; }
 
-        public void AddRandomItemToCart()
+        public void AddToCart()
         {
             PickAnySize();
             PickAnyColour();
@@ -92,8 +92,5 @@ namespace LumaTestingFramework.Website.Pages.Components
                 sizeOptions[size] = sizeElement;
             }
         }
-
-        public static List<Product> ProductsList(IWebDriver driver) =>
-            driver.FindElements(By.CssSelector(".products.list.items.product-items")).Select(e => new Product(e)).ToList();
     }
 }
