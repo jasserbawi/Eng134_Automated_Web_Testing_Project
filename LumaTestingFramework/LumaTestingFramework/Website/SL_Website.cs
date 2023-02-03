@@ -34,7 +34,6 @@ public class SL_Website
         MensTops = new SL_MensTops(_driver);
         WomensBottoms = new SL_WomensBottoms(_driver);
         WomensTops = new SL_WomensTops(_driver);
-
     }
 
     public string GetCurrentPageUrl() => _driver.Url;

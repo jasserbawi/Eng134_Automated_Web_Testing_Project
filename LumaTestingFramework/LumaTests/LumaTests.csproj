@@ -19,13 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Testhost.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\LumaTestingFramework\LumaTestingFramework.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LumaTestingFramework\LumaTestingFramework.csproj" />
+    <None Update="Testhost.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
