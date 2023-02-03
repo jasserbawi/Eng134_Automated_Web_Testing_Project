@@ -1,5 +1,5 @@
 ﻿using LumaTestingFramework.Website;
-using LumaTestingFramework.Website.Driver;
+using LumaTestingFramework.Website._driver;
 using LumaTestingFramework.Website.Pages.Components;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

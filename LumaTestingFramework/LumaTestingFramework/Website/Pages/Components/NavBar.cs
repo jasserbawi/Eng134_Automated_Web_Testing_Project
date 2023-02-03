@@ -12,6 +12,7 @@ public class NavBar
     public IWebElement Sale { get; private set; }
 
     public NavBar(IWebElement navElement)
+
     {
         WhatsNew = navElement.FindElement(By.Id("ui-id-3"));
         Women = navElement.FindElement(By.Id("ui-id-4"));
