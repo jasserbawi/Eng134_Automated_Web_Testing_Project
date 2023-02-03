@@ -19,8 +19,8 @@ public class CheckoutTests
         _driverConfig = new(10, 10, true);
         _driver = _driverConfig.Driver;
         _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.MensBottoms);
-        var productList = Product.ProductsList(_driver);
-        productList[0].AddRandomItemToCart();
+        //var productList = Product.ProductsList(_driver);
+        //productList[0].AddRandomItemToCart();
 
         //sleep to allow the website to process an item being added to the basket
         Thread.Sleep(1000);

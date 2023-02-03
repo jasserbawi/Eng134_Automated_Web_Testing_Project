@@ -22,7 +22,7 @@ public class SL_WomenPage : SL_StandardPage, INavigate
         NavBar = new NavBar(_driver.FindElement(By.TagName("nav")));
         SideBar = _driver.FindElement(By.ClassName("sidebar-main")).FindElements(By.TagName("a")).ToList();
         PromoBlock = _driver.FindElement(By.CssSelector("div[class='blocks-promo']")).FindElements(By.TagName("a")).ToList();
-        Products = Product.ProductsList(_driver);
+        //Products = Product.ProductsList(_driver);
     }
 
     public void ClickYogaCollection() => PromoBlock[0].Click();

@@ -21,8 +21,8 @@ public class CheckoutPageStepDefinitions
     [Given(@"I have an item in the basket")]
     public void GivenIHaveAnItemInTheBasket()
     {
-        _website.WomenPage.Navigate();
-        _website.WomenPage.Products[0].AddRandomItemToCart();
+        //_website.WomenPage.Navigate();
+        //_website.WomenPage.Products[0].AddRandomItemToCart();
     }
 
     [Given(@"I am on the checkout page")]
