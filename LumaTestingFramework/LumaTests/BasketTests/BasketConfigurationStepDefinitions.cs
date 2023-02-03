@@ -20,7 +20,7 @@ namespace LumaTests.BasketTests
         [Before]
         public void Setup() 
         {
-          _website = new(10, 10, false);
+          _website = new(10, 10, true);
         }
 
         [Given(@"the basket contains an item")]

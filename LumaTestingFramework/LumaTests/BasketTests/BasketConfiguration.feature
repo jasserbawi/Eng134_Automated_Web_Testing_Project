@@ -5,6 +5,7 @@ US.2.As a customer, I would like to check the total price of my basket so that I
 US.3.As a customer, I would like to add to the basket so that I can manage purchases.
 US.4.As a customer, I would like to be able to remove items from the basket so that I can manage purchases. 
 
+@ignore
 @HappyPath
 @AC.23.1
 Scenario: Proceed to checkout

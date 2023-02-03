@@ -19,7 +19,7 @@ public class CheckoutTests
     [Test]
     public void WithItemsInBasket_CanNavigateToCheckoutPage()
     {
-        _website = new(10, 10, false);
+        _website = new(10, 10, true);
         _website.WomensTops.Navigate();
         _website.WomensTops.AddProductToBasket();
         _website.CheckoutPage.Navigate();
