@@ -26,6 +26,7 @@ public class SL_Website
         CheckoutPage = new SL_CheckoutPage(_driver);
         WomenPage = new SL_WomenPage(_driver);
         MenPage = new SL_MenPage(_driver);
+        
     }
 
     public string GetCurrentPageUrl() => _driver.Url;
