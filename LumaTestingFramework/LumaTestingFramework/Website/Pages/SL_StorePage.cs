@@ -12,12 +12,18 @@ public abstract class SL_StorePage : SL_StandardPage
     {
         _products = new();
     }
-    protected List<Product> ProductsList(IWebDriver driver) =>
-            driver.FindElements(By.CssSelector(".products.list.items.product-items")).Select(e => new Product(e)).ToList();
+    protected List<Product> ProductsList(IWebDriver driver)
+    {
+        foreach(var element in driver.FindElements(By.ClassName("product-item"))) 
+        {
+            _products.Add(new Product(element));
+        }
+        return _products;
+    }
     
     public void AddProductToBasket()
     {
-        _products[0].AddToCart();
+        _products[0].AddingToCart();
     }
 }
 public class SL_MensTops : SL_StorePage, INavigate
