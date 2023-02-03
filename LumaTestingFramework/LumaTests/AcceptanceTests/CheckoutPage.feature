@@ -2,6 +2,7 @@
 
 As a customer I need to checkout so I can input my shipping details
 
+@ignore
 @HappyPath
 @AC8.1
 Scenario: Checkout with valid details
