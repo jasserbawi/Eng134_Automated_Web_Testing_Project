@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 
 using LumaTestingFramework.Website.Pages;
-using LumaTestingFramework.Website.Driver;
+using LumaTestingFramework.Website._driver;
 
 namespace LumaTestingFramework.Website;
 
@@ -17,6 +17,9 @@ public class SL_Website
     public SL_MensTops MensTops { get; }
     public SL_WomensBottoms WomensBottoms { get; }
     public SL_WomensTops WomensTops { get; }
+    public SL_BasketPage BasketPage { get; }
+    
+
 
     #endregion
 
@@ -34,6 +37,8 @@ public class SL_Website
         MensTops = new SL_MensTops(_driver);
         WomensBottoms = new SL_WomensBottoms(_driver);
         WomensTops = new SL_WomensTops(_driver);
+        BasketPage = new SL_BasketPage(_driver);
+
     }
 
     public string GetCurrentPageUrl() => _driver.Url;
