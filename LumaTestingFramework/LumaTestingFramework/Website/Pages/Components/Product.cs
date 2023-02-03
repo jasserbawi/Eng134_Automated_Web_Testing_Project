@@ -19,6 +19,7 @@ namespace LumaTestingFramework.Website.Pages.Components
             PickAnyColour();
             AddToCartButton = _webElement.FindElement(By.CssSelector(".action.tocart.primary"));
             AddingToCart();
+            Thread.Sleep(2000);
         }
         public void PickAnyColour()
         {
@@ -92,7 +93,5 @@ namespace LumaTestingFramework.Website.Pages.Components
                 sizeOptions[size] = sizeElement;
             }
         }
-
-        
     }
 }

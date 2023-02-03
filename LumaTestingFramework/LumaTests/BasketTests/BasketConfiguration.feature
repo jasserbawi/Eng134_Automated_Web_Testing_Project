@@ -3,6 +3,7 @@
 US.23.As a customer, I would like to be taken to the checkout page so that I can order my items.
 US.2.As a customer, I would like to check the total price of my basket so that I know how much I am going to spend.
 US.3.As a customer, I would like to add to the basket so that I can manage purchases.
+US.4.As a customer, I would like to be able to remove items from the basket so that I can manage purchases. 
 
 @HappyPath
 @AC.23.1
@@ -26,7 +27,7 @@ Scenario: Adding an Item to the basket
 	Then an item should be in the basket
 
 @HappyPath
-@AC.2.1
+@AC.4.1
 Scenario: Removing an item from the basket
 	Given the basket contains some items
 	And I am on the basket page

@@ -39,7 +39,6 @@ public class SL_Website
         WomensTops = new SL_WomensTops(_driver);
         BasketPage = new SL_BasketPage(_driver);
 
-
     }
 
     public string GetCurrentPageUrl() => _driver.Url;

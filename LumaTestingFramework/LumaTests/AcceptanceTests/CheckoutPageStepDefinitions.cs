@@ -15,14 +15,15 @@ public class CheckoutPageStepDefinitions
     [OneTimeSetUp]
     public void Setup()
     {
-        _website = new(3, 3, false);
+        _website = new(3, 3, true);
     }
 
     [Given(@"I have an item in the basket")]
     public void GivenIHaveAnItemInTheBasket()
     {
-        //_website.WomenPage.Navigate();
-        //_website.WomenPage.Products[0].AddRandomItemToCart();
+        _website.WomensTops.Navigate();
+        _website.WomensTops.AddProductToBasket();
+        Thread.Sleep(1000);
     }
 
     [Given(@"I am on the checkout page")]
@@ -37,7 +38,7 @@ public class CheckoutPageStepDefinitions
         _website.CheckoutPage.EnterEmail("dog@dog.net");
         _website.CheckoutPage.EnterFirstName("dog");
         _website.CheckoutPage.EnterLastName("boy");
-        _website.CheckoutPage.EnterAddressLine1("1 dog street");
+        _website.CheckoutPage.EnterAddress("1 dog street");
         _website.CheckoutPage.EnterPostcode("123456");
         _website.CheckoutPage.EnterPhoneNumber("12345678910");
 
