@@ -26,27 +26,24 @@ namespace LumaTests.BasketTests
         [Given(@"the basket contains an item")]
         public void WhenTheBasketContainsAnItem()
         {
-            _driver.
-            var productList = Product.ProductsList(_driver);
-            productList[0].AddRandomItemToCart();
+            _website.MensBottoms.Navigate();
+            _website.MensBottoms.AddProductToBasket();
             Thread.Sleep(1000);
-            IWebElement basketContents = _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div/a"));
-            basketContents.Click();
-                
+            _website.BasketPage.Navigate();
         }
 
         [When(@"I click proceed to checkout")]
         public void WhenIClickProceedToCheckout()
         {
-            IWebElement proceedToCheckout = _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/ul/li[1]/button/span"));
-            proceedToCheckout.Click();
+            Thread.Sleep(1000);
+            _website.BasketPage.ProceedToCheckout();
         }
 
         [Then(@"I should land on the checkout page")]
         public void ThenIShouldLandOnTheCheckoutPage()
         {
             string checkoutUrl = AppConfigReader.BaseUrl + AppConfigReader.Checkout;
-            Assert.That(_driver.Url, Is.EqualTo(checkoutUrl));
+            Assert.That(_website.GetCurrentPageUrl, Is.EqualTo(checkoutUrl));
         }
     }
 }

@@ -16,16 +16,16 @@ namespace LumaTestingFramework.Website.Pages
 
         public List<IWebElement> cartItems { get; set; }
 
-        public IWebElement _proceedToCheckout;
+        public IWebElement _proceedToCheckout => _driver.FindElement(By.CssSelector(".action.primary.checkout"));
         public IWebElement _totalPrice => _driver.FindElement(By.XPath("//*[@id=\"cart-totals\"]/div/table/tbody/tr[3]/td/strong/span"));
 
-        public void GetCheckoutButton()
-        {
-            _proceedToCheckout = _driver.FindElement(By.CssSelector(".action.primary.checkout"));
-
-        }
-        public void ProceedToCheckout () => _proceedToCheckout.Click();
+        public IWebElement _shoppingCart => _driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div/a"));
         
+
+        public void OpenBasketPage() => _shoppingCart.Click();
+
+        public void ProceedToCheckout () => _proceedToCheckout.Click();
+
 
         public void UpdateCartItems()
         {
@@ -41,7 +41,6 @@ namespace LumaTestingFramework.Website.Pages
         {
             _driver.Navigate().GoToUrl(AppConfigReader.BaseUrl + AppConfigReader.Basket);
             UpdateCartItems();
-            GetCheckoutButton();
         }
 
     }

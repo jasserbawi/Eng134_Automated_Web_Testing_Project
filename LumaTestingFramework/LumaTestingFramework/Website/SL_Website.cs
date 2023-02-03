@@ -13,7 +13,12 @@ public class SL_Website
     public SL_WomenPage WomenPage { get; }
     public SL_CheckoutPage CheckoutPage { get; }
     public SL_MenPage MenPage { get; }
+    public SL_MensBottoms MensBottoms { get; }
+    public SL_MensTops MensTops { get; }
+    public SL_WomensBottoms WomensBottoms { get; }
+    public SL_WomensTops WomensTops { get; }
     public SL_BasketPage BasketPage { get; }
+    
 
 
     #endregion
@@ -28,8 +33,13 @@ public class SL_Website
         CheckoutPage = new SL_CheckoutPage(_driver);
         WomenPage = new SL_WomenPage(_driver);
         MenPage = new SL_MenPage(_driver);
+        MensBottoms = new SL_MensBottoms(_driver);
+        MensTops = new SL_MensTops(_driver);
+        WomensBottoms = new SL_WomensBottoms(_driver);
+        WomensTops = new SL_WomensTops(_driver);
         BasketPage = new SL_BasketPage(_driver);
-        
+
+
     }
 
     public string GetCurrentPageUrl() => _driver.Url;
