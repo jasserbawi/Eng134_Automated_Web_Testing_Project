@@ -13,7 +13,6 @@ public class SL_Website
     public SL_WomenPage WomenPage { get; }
     public SL_CheckoutPage CheckoutPage { get; }
     public SL_MenPage MenPage { get; }
-    public SL_WomensTopsPage WomensTopsPage { get; }
 
     #endregion
 
@@ -27,7 +26,7 @@ public class SL_Website
         CheckoutPage = new SL_CheckoutPage(_driver);
         WomenPage = new SL_WomenPage(_driver);
         MenPage = new SL_MenPage(_driver);
-        WomensTopsPage = new SL_WomensTopsPage(_driver);
+        
     }
 
     public string GetCurrentPageUrl() => _driver.Url;

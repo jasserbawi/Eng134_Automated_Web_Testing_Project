@@ -13,12 +13,12 @@ namespace LumaTestingFramework.Website.Pages.Components
         IWebElement AddToWishListButton { get; set; }
         IWebElement AddToCompareButton { get; set; }
 
-        public void AddRandomItemToCart(SL_StandardPage page)
+        public void AddToCart()
         {
             PickAnySize();
             PickAnyColour();
             AddToCartButton = _webElement.FindElement(By.CssSelector(".action.tocart.primary"));
-            AddingToCart(page);
+            AddingToCart();
         }
         public void PickAnyColour()
         {
@@ -36,12 +36,7 @@ namespace LumaTestingFramework.Website.Pages.Components
                 SelectSize(listOfSizeOptions[0]);
             }
         }
-        public void AddingToCart(SL_StandardPage page)
-        {
-            page.MouseOver(_webElement);
-            page.MouseOver(AddToCartButton);
-            AddToCartButton.Click();
-        }
+        public void AddingToCart() => AddToCartButton.Click();
         public void NavigateToItemPage() => ItemPageLink.Click();
         public void AddingToWishList() => AddToWishListButton.Click();
         public void AddingToCompare() => AddToCompareButton.Click();
@@ -98,7 +93,6 @@ namespace LumaTestingFramework.Website.Pages.Components
             }
         }
 
-        public static List<Product> ProductsList(IWebDriver driver) =>
-            driver.FindElements(By.CssSelector(".products.list.items.product-items")).Select(e => new Product(e)).ToList();
+        
     }
 }

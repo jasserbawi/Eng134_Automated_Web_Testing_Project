@@ -25,7 +25,7 @@ public class SL_MenPage : SL_StandardPage, INavigate
         PageHeader = new PageHeader(_driver.FindElement(By.CssSelector("header[class='page-header']")));
         SideBar = _driver.FindElement(By.ClassName("sidebar-main")).FindElements(By.TagName("a")).ToList();
         PromoBlock = _driver.FindElement(By.CssSelector("div[class='blocks-promo']")).FindElements(By.TagName("a")).ToList();
-        Products = Product.ProductsList(_driver);
+        //Products = Product.ProductsList(_driver);
     }
 
     public void ClickPerformacePromo() => PromoBlock[0].Click();
